@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EquiEdge — Demo Trading & Investment</title>
+ <link rel="stylesheet" href="style.css">
+ <script src="script.js"></script>
+
+</head>
+<body>
+<header>
+  <div style="width:160px"><strong style="opacity:.95">EquiEdge</strong></div>
+  <div class="brand">
+    <h1>EquiEdge</h1>
+    <p class="small">Trading · Invest · Demat —(no real money)</p>
+  </div>
+  <nav>
+    <a href="#market">Market</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#demat">Open Demat</a>
+    <a href="#withdraw">Withdraw</a>
+  </nav>
+</header>
+<div class="container">
+  <div class="grid">
+    <!-- main left -->
+    <div>
+      <section id="market" class="card stocks">
+        <h2>Market Watch</h2>
+        <p class="small">Simulated prices — click Buy/Sell to test order flow</p>
+        <table id="stockTable" aria-live="polite">
+          <thead><tr><th>Symbol</th><th>Price</th><th>Change</th><th style="text-align:right">Action</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section id="portfolio" class="card" style="margin-top:16px">
+        <h2>Your Portfolio</h2>
+        <div id="portfolioEmpty" class="small">No holdings yet. Buy some stocks to see them here.</div>
+        <table id="portfolioTable" class="portfolio" style="display:none">
+          <thead><tr><th>Symbol</th><th>Qty</th><th>Avg Price</th><th>Value</th><th>Unreal P/L</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section id="transactions" class="card" style="margin-top:16px">
+        <h2>Transactions</h2>
+        <div id="txEmpty" class="small">No transactions yet.</div>
+        <ul id="txList" style="margin-top:8px"></ul>
+      </section>
+    </div>
+    <!-- right sidebar -->
+    <aside>
+      <div class="card" style="margin-bottom:12px">
+        <h2>Quick Actions</h2>
+        <div class="actions" style="margin-bottom:12px">
+          <button class="btn" onclick="openModal('trade')">Buy / Sell</button>
+          <button class="btn secondary" onclick="openModal('demat')">Open Demat</button>
+        </div>
+        <p class="mini">Demo cash balance: <strong id="cashBal">₹ 100000</strong></p>
+      </div>
+      <div class="card watchlist">
+        <h2>Watchlist</h2>
+        <ul id="watchUl" style="list-style:none;padding-left:0;margin-top:8px">
+        </ul>
+        <div style="margin-top:10px" class="small">Click the symbol in Market Watch to add/remove watchlist.</div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h2>Demat Account</h2>
+        <p class="small">Open a demo demat to simulate holdings and account details.</p>
+        <div style="margin-top:8px">
+          <button class="btn" onclick="openModal('demat')">Open Demo Demat</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <section id="demat" class="card" style="margin-top:18px">
+    <h2>Demat Signup (Quick)</h2>
+    <p class="mini">This will create a demo demat profile stored in your browser (localStorage).</p>
+    <form id="dematForm" onsubmit="event.preventDefault(); createDemat()">
+      <div class="form-row">
+        <label>Full name</label>
+        <input id="dm-name" required>
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input id="dm-email" type="email" required>
+      </div>
+      <div class="form-row">
+        <label>Phone</label>
+        <input id="dm-phone" type="text" required>
+      </div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+        <button class="btn" type="submit">Create Demo Demat</button>
+      </div>
+    </form>
+  </section>
+  <section id="withdraw" class="card" style="margin-top:18px;display:none">
+    <h2>Withdraw (Demo)</h2>
+    <form id="withdrawForm" onsubmit="event.preventDefault(); withdrawMoney()">
+      <div class="form-row">
+        <label>Amount (₹)</label>
+        <input id="wd-amt" type="number" min="100" required>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:8px">
+        <button class="btn">Request Withdraw</button>
+      </div>
+    </form>
+  </section>
+  <div style="margin-top:18px" class="card">
+    <h2>Notice & Disclaimer</h2>
+    <p class="small">This is a <strong>demo</strong> trading & investment site. It does not connect to any exchange, brokerage, or demat provider. Do not use real money. To turn into a real trading platform you need exchange APIs, secure backend, KYC flow and regulatory approvals.</p>
+  </div>
+  <footer>
+    &copy; 2025 EquiEdge — Demo. Not for real trading.
+  </footer>
+</div>
+<!-- modal skeleton -->
+<div id="modalBack" class="modal-back" onclick="closeModal(event)">
+  <div class="modal" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+    <div id="modalContent"></div>
+  </div>
+</div>
+</body>
+</html>
