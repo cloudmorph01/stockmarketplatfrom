@@ -1,0 +1,46 @@
+ :root{
+    --primary:#6a495a; /* magenta-like accent */
+    --bg:#f7f7fb;
+    --card:#fff;
+    --muted:#0a0909;
+  }
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); margin:0;color:#222}
+  header{background:var(--primary); color:#fff; padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .brand{text-align:center; flex:1}
+  .brand h1{margin:0;font-size:1.6rem}
+  .brand p{margin:2px 0 0;font-size:0.9rem;opacity:.95}
+  nav a{color:#fff;text-decoration:none;margin-left:14px;font-weight:600}
+  .container{max-width:1100px;margin:22px auto;padding:0 16px}
+  .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+  .card{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 6px 20px rgba(20,20,30,0.06)}
+  h2{margin:0 0 12px;font-size:1.15rem;color:var(--primary)}
+  .stocks table{width:100%;border-collapse:collapse}
+  .stocks th,.stocks td{padding:8px;text-align:left;border-bottom:1px solid #eee;font-size:.95rem}
+  .stock-change{font-weight:700}
+  .positive{color:green}
+  .negative{color:#c62828}
+  .btn{background:var(--primary);color:#fff;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+  .btn.secondary{background:#eee;color:#222}
+  .small{font-size:.9rem;color:var(--muted)}
+  .actions{display:flex;gap:8px;justify-content:flex-end}
+  .form-row{margin-bottom:10px}
+  label{display:block;font-size:.88rem;margin-bottom:6px;color:#444}
+  input[type=text],input[type=email],input[type=number],select,input[type=date],textarea{
+    width:100%;padding:8px;border:1px solid #e1e1e6;border-radius:6px;font-size:.95rem;background:#fff;
+  }
+  .watchlist li{padding:6px 0;display:flex;justify-content:space-between}
+  footer{margin:30px 0;text-align:center;color:#777;font-size:.9rem}
+  /* responsive */
+  @media (max-width:900px){
+    .grid{grid-template-columns:1fr}
+    nav{display:none}
+    .brand{order:0}
+  }
+  /* modal */
+  .modal-back{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center}
+  .modal{background:#fff;padding:18px;border-radius:8px;max-width:520px;width:94%}
+  .row{display:flex;gap:8px}
+  .row .col{flex:1}
+  .mini{font-size:.85rem;color:#666}
+  table.portfolio{width:100%;border-collapse:collapse}
+  table.portfolio th, table.portfolio td{padding:8px;border-bottom:1px solid #eee;font-size:.95rem}
